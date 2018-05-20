@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表情包生成器</title>
+    <style>
+        #content{
+            width: 300px;
+            max-width: 300px;
+            margin: auto;
+        }
+        #result {
+            width: 300px;
+            height: auto;
+        }
+        #meme {
+            width: 100%;
+        }
+
+        #preview, #download {
+            margin: 20px auto;
+            border: 0;
+            display: block;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #000;
+            cursor: pointer;
+            padding: 10px 20px;
+            text-align: center;
+            width: 100px;
+        }
+        #preview {
+            float: left;
+        }
+        #download {
+            float: right;
+        }
+
+        #container {
+            text-align: left;
+            width: 300px;
+            margin: auto;
+        }
+
+        #content{
+            background-color: white;
+        }
+        .drawimg {
+            width: 300px;
+            margin: auto;
+        }
+        .edit{
+            padding: 0 6px 10px 6px;
+        }
+        footer {
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="content">
+            <canvas id="myCanvas"></canvas>
+            <p contenteditable="true" class='edit'>
+                5月19日 天气 大火炉<br>
+                明天就是520了，还是没有人和我表白。这个仇我记住了。
+            </p>
+        </div>
+        <a id="preview">戳我预览</a><a id="download">戳我下载</a>
+        <div class="drawimg"></div>
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" id="result" alt="meme" title="meme">
+    </div>
+<br><br><br><br>
+<br>
+<br>
+    <script src="dist/bundle.js"></script>
+</body>
+
+</html>
