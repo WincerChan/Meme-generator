@@ -1,82 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>表情包生成器</title>
-    <style>
-        #content{
-            width: 300px;
-            max-width: 300px;
-            margin: auto;
-        }
-        #result {
-            width: 300px;
-            height: auto;
-        }
-        #meme {
-            width: 100%;
-        }
-
-        #preview, #download {
-            margin: 20px auto;
-            border: 0;
-            display: block;
-            border-radius: 5px;
-            color: #fff;
-            background-color: #000;
-            cursor: pointer;
-            padding: 10px 20px;
-            text-align: center;
-            width: 100px;
-        }
-        #preview {
-            float: left;
-        }
-        #download {
-            float: right;
-        }
-
-        #container {
-            text-align: left;
-            width: 300px;
-            margin: auto;
-        }
-
-        #content{
-            background-color: white;
-        }
-        .drawimg {
-            width: 300px;
-            margin: auto;
-        }
-        .edit{
-            padding: 0 6px 10px 6px;
-        }
-        footer {
-            margin: auto;
-        }
-    </style>
+    <title>Meme · 表情包生成</title>
+    <link rel="stylesheet" href="dist/style.css">
 </head>
 
 <body>
-    <div id="container">
-        <div id="content">
+    <nav class="navbar is-spaced has-shadow is-white" aria-label="dropdown navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                Meme
+            </a>
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="#">
+                    教程
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="/">
+                        选择其它梗
+                    </a>
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item" href="#">
+                            请期待
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped">
+                        <!--
+                        <p class="control">
+                            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000"
+                                target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
+                                <span class="icon">
+                                    <i class="fab fa-twitter"></i>
+                                </span>
+                                <span>
+                                    Tweet
+                                </span>
+                            </a>
+                        </p>
+                        -->
+                        <p class="control">
+                            <a class="button is-link" target="__blank" href="https://github.com/WincerChan/Meme-generator">
+                                <span>源码</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="section container">
+        <h1 class="title">Meme</h1>
+        <p class="subtitle">——这个仇我记下了</p>
+
+        <hr>
+        <div id="content" class="is-centered">
             <canvas id="myCanvas"></canvas>
             <p contenteditable="true" class='edit'>
-                5月19日 天气 大火炉<br>
-                明天就是520了，还是没有人和我表白。这个仇我记住了。
+                5月19日 天气 大火炉
+                <br> 明天就是520了，还是没有人和我表白。这个仇我记下了。
             </p>
         </div>
-        <a id="preview">戳我预览</a><a id="download">戳我下载</a>
-        <div class="drawimg"></div>
+
+        <div class="button-width">
+            <button id="preview" class="button is-info is-outlined">戳我预览</button>
+            <button id="download" class="button is-info is-outlined">戳我下载</button>
+        </div>
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" id="result" alt="meme" title="meme">
-    </div>
-<br><br><br><br>
-<br>
-<br>
+        <br>
+        <br>
+        <br>
+        <article class="message is-dark content">
+            <div class="message-body">
+                <p>Tips:</p>
+                <ol class="message-text">
+                    <li>点击文字可直接编辑；</li>
+                    <li>由于下载采用了
+                        <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="__blank">Blob</a> 协议，故仅新版 Chrome、Firefox 支持下载，其它浏览器请点击预览后右击保存。</li>
+                </ol>
+            </div>
+        </article>
+    </section>
+
+    <footer class="footer is-fixed-bottom">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Meme</strong> by
+                    <a target="__blank" href="https://www.itswincer.com">Wincer</a>. The source code is licensed
+                    <a target="__blank" href="https://www.gnu.org/licenses/gpl-3.0.html">GPL 3.0</a>. The website content is licensed
+                    <a target="__blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
     <script src="dist/bundle.js"></script>
 </body>
 
