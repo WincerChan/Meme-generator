@@ -15,6 +15,10 @@
   margin-top: .8rem;
   max-width: 300px;
 }
+.video {
+  border-radius: 4px;
+  margin-bottom: 0.6rem;
+}
 
 #preview {
   float: left;

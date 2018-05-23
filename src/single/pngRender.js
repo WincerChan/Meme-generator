@@ -57,9 +57,11 @@ var loadImg = (sourceImg, url) => {
 var __main = () => {
     var sourceImg = new Image(),
         url = 'img/example.png',
-        cnt = document.querySelector('#content');
-    loadImg(sourceImg, url);
-    bindClick(cnt);
+        cnt = document.querySelector('#cntVengeful');
+    if (cnt) {
+        loadImg(sourceImg, url);
+        bindClick(cnt);
+    }
 }
 
 export { __main };

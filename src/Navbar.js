@@ -10,8 +10,12 @@ var navbarItems = [
 var menuName = '选择其它梗';
 var templateList = [
     {
-        'name': '请期待',
-        'link': '/'
+        'name': '王境泽',
+        'link': '102b1026'
+    },
+    {
+        'name': '为所欲为',
+        'link': 'aa66fceb'
     }
 ]
 var sourceInfo = {
