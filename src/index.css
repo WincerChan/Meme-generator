@@ -1,6 +1,7 @@
-#content {
+#cntVengeful {
   width: 300px; 
   max-width: 300px;
+  background-color: white;
 }
 
 #result {
@@ -29,9 +30,6 @@
   float: right;
 }
 
-#content {
-  background-color: white;
-}
 
 .drawimg {
   width: 300px;
