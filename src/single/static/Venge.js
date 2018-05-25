@@ -39,4 +39,4 @@ const Vengeful = () => (
         </article>
     </section>
 )
-export { Vengeful, imgCaption, messages }
+export { Vengeful }
