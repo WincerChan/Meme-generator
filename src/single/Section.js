@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Vengeful, imgCaption, messages } from './static/Venge';
+import { Vengeful } from './static/Venge';
 import { Wangjingze } from './static/Wangjingze';
 import { Weisuoyuwei } from './static/Weisuoyuwei';
 
