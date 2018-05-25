@@ -17,11 +17,11 @@ templates.forEach((element, i) => {
                 </video>
             </div>
             {
-                element.caption.map((sentence, index) =>
+                element.config.map((sentence, index) =>
                     <div className="field">
                         <label className="label">第 {index + 1} 句：</label>
                         <div class="control">
-                            <input className="input is-info sentence" type="text" placeholder={sentence} />
+                            <input className="input is-info sentence" type="text" placeholder={sentence.default} />
                         </div>
                     </div>)
             }
