@@ -6,7 +6,8 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import Section from './single/Section';
 import registerServiceWorker from './registerServiceWorker';
-import { __main } from './single/pngRender.js'
+import { __main } from './single/pngRender.js';
+import { GifReader } from 'omggif';
 
 ReactDOM.render(<div id="root">
     <Navbar />

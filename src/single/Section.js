@@ -4,6 +4,8 @@ import { Vengeful } from './static/Venge';
 import { Wangjingze } from './static/Wangjingze';
 import { Weisuoyuwei } from './static/Weisuoyuwei';
 
+import { gifRender, download } from './gifRender';
+
 var templates = [Wangjingze, Weisuoyuwei];
 
 templates.forEach((element, i) => {
@@ -13,8 +15,7 @@ templates.forEach((element, i) => {
             <p className="subtitle">——{element.name}</p>
             <hr />
             <div id="contentWjz">
-                <video width="400px" className="video" src={element.video} controls="controls" muted="muted" autoPlay="autoplay" loop="loop">
-                </video>
+                <img src="https://cdn.yuque.com/yuque/0/2018/gif/114577/1527254341368-assets/web-upload/3c3957c9-501b-4d34-8503-9bd96c7ca90a.gif" id="gifMeme" />
             </div>
             {
                 element.config.map((sentence, index) =>
@@ -26,8 +27,8 @@ templates.forEach((element, i) => {
                     </div>)
             }
             <div className="button-width">
-                <button id="preveiw" className="button is-info is-outlined">戳我预览</button>
-                <button id="download" className="button is-info is-outlined">戳我下载</button>
+                <button id="preveiw" className="button is-info is-outlined" onClick={gifRender}>戳我预览</button>
+                <button id="download" className="button is-info is-outlined" onClick={download}>戳我下载</button>
             </div>
             <br />
             <br />
