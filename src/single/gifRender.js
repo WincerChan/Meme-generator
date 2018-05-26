@@ -2,7 +2,12 @@ import omggif from 'omggif';
 import GIF from 'gif.js';
 import axios from 'axios';
 
+
 var gifRender = async function (gifInfo) {
+    var progressBar = document.querySelector('#progress'),
+        notificationMessage = document.querySelector('#success-notification');
+    progressBar.style.display = 'block';
+    notificationMessage.style.display = 'none';
 
     var createCanvasContext = function (width, height) {
         let canvas = document.createElement('canvas');
@@ -20,7 +25,6 @@ var gifRender = async function (gifInfo) {
     var response = await axios.get(gifInfo.gif, {
         responseType: 'arraybuffer',
         onDownloadProgress: event => {
-            // console.log([event.total, event.loaded])
         }
     })
     var arrayBufferView = new Uint8Array(response.data);
@@ -42,7 +46,7 @@ var gifRender = async function (gifInfo) {
     console.log('nums', gifReader.numFrames())
 
     for (let i = 0; i < gifReader.numFrames(); i++) {
-
+        console.log(`i: ${i}, nums: ${gifReader.numFrames()}`);
         gifReader.decodeAndBlitFrameRGBA(i, pixelBuffer);
         let imageData = new window.ImageData(pixelBuffer, width, height)
         ctx.putImageData(imageData, 0, 0);
@@ -52,15 +56,12 @@ var gifRender = async function (gifInfo) {
             var textInfo = gifInfo.config[textIndex];
             if (textInfo.startTime <= time && time <= textInfo.endTime) {
                 var text = undefined;
-                console.log('cap' + captions);
                 if (captions[textIndex])
                     text = captions[textIndex].value || textInfo.default;
                 else
                     text = textInfo.default;
-                console.log(2 + text);
                 ctx.strokeText(text, width / 2, height - 5, width);
                 ctx.fillText(text, width / 2, height - 5, width);
-                console.log('time' + frameInfo.delay / 100)
             }
             time += frameInfo.delay / 100;
             if (time > textInfo.endTime) {
@@ -74,11 +75,16 @@ var gifRender = async function (gifInfo) {
         })
     }
     gif.render()
+    gif.on('progress', progress => {
+        progressBar.value = 100 * progress;
+    })
     gif.on('finished', blob => {
-        document.querySelector('#success-notification').style.display = 'block';
         var img = document.querySelector('#gifMeme');
         window.gifUrl = window.URL.createObjectURL(blob);
         img.src = window.gifUrl;
+        progressBar.style.display = 'none';
+        progressBar.value = 0;
+        document.querySelector('#success-notification').style.display = 'block';
     })
 }
 

@@ -29,7 +29,7 @@ const Vengeful = () => (
         <br />
         <br />
         <br />
-        <article className="message is-dark content">
+        <article className="message is-warning content">
             <div className="message-body">
                 <p>Tips:</p>
                 <ol className="message-text">

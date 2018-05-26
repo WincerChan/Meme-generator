@@ -54,3 +54,9 @@
 #success-notification{
   display: none;
 }
+#progress{
+  display: none;
+}
+.is-link {
+  border-color:#2196f3!important;
+}

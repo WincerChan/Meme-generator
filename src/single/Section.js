@@ -10,7 +10,10 @@ import { gifRender, download } from './gifRender';
 
 
 const templates = [Wangjingze, Weisuoyuwei, Lianliankan, Dagong];
-
+const messages = [
+    <p>服务器在国外，加载图片在晚上高峰期可能会很慢；</p>,
+    <p>由于下载采用了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="__blank">Blob</a> 协议，故仅新版 Chrome、Firefox 支持下载，其它浏览器请点击预览后右击保存。</p>
+]
 templates.forEach((element, i) => {
     templates[i].component = () => (
         <section className="section container" >
@@ -20,9 +23,10 @@ templates.forEach((element, i) => {
             <div id="contentWjz">
                 <img src={element.gif} id="gifMeme" alt="meme" />
             </div>
+            <progress class="progress is-success" id="progress" value="0" max="100">233</progress>
             <div id="success-notification" className="notification is-success">
                 <button className="delete" onClick={() => document.querySelector('#success-notification').style.display = 'none'}></button>
-                成功生成
+                生成完毕。
             </div>
             {
                 element.config.map((sentence, index) =>
@@ -34,15 +38,18 @@ templates.forEach((element, i) => {
                     </div>)
             }
             <div className="button-width">
-                <button id="preveiw" className="button is-info is-outlined" onClick={() => gifRender(element)}>戳我预览</button>
-                <button id="download" className="button is-info is-outlined" onClick={() => download(element)}>戳我下载</button>
+                <button id="preveiw" className="button is-link is-outlined" onClick={() => gifRender(element)}>戳我预览</button>
+                <button id="download" className="button is-link is-outlined" onClick={() => download(element)}>戳我下载</button>
             </div>
             <br />
             <br />
             <br />
-            <article className="message is-danger content">
+            <article className="message is-warning content">
                 <div className="message-body">
-                    <p>目前预览和下载还在完善中</p>
+                    <p>Tips:</p>
+                    <ol className="message-text">
+                        {messages.map(msg => <li>{msg}</li>)}
+                    </ol>
                 </div>
             </article>
         </section >
