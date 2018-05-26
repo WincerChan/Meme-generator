@@ -23,14 +23,14 @@ templates.forEach((element, i) => {
             <div id="contentWjz">
                 <img src={Vendors + element.gif} id="gifMeme" alt="meme" />
             </div>
-            <progress class="progress is-success" id="progress" value="0" max="100">233</progress>
+            <progress className="progress is-success" id="progress" value="0" max="100">233</progress>
             <div id="success-notification" className="notification is-success">
                 <button className="delete" onClick={() => document.querySelector('#success-notification').style.display = 'none'}></button>
                 生成完毕。
             </div>
             {
                 element.config.map((sentence, index) =>
-                    <div className="field">
+                    <div className="field" key={index}>
                         <label className="label">第 {index + 1} 句：</label>
                         <div className="control">
                             <input className="input is-info sentence" type="text" placeholder={sentence.default} />
@@ -48,7 +48,7 @@ templates.forEach((element, i) => {
                 <div className="message-body">
                     <p>Tips:</p>
                     <ol className="message-text">
-                        {messages.map(msg => <li>{msg}</li>)}
+                        {messages.map((msg, i) => <li key={i}>{msg}</li>)}
                     </ol>
                 </div>
             </article>

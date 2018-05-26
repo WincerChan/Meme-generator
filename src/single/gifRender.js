@@ -1,6 +1,5 @@
 import omggif from 'omggif';
 import GIF from 'gif.js';
-import axios from 'axios';
 
 const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.1/public'
 
@@ -24,13 +23,10 @@ var gifRender = async function (gifInfo) {
         ctx.lineJoin = 'round'
         return [canvas, ctx]
     }
-    var response = await axios.get(Vendors + gifInfo.gif, {
-        responseType: 'arraybuffer',
-        onDownloadProgress: event => {
-        }
-    })
-    var arrayBufferView = new Uint8Array(response.data);
-    var gifReader = new omggif.GifReader(arrayBufferView),
+    var tmp = await fetch(Vendors + gifInfo.gif),
+        response = await tmp.arrayBuffer(),
+        arrayBufferView = new Uint8Array(response),
+        gifReader = new omggif.GifReader(arrayBufferView),
         frame0info = gifReader.frameInfo(0),
         [width, height] = [frame0info.width, frame0info.height],
         [, ctx] = createCanvasContext(width, height),
@@ -45,10 +41,8 @@ var gifRender = async function (gifInfo) {
         textIndex = 0,
         time = 0,
         captions = document.querySelectorAll('.input.is-info.sentence');
-    console.log('nums', gifReader.numFrames())
 
     for (let i = 0; i < gifReader.numFrames(); i++) {
-        console.log(`i: ${i}, nums: ${gifReader.numFrames()}`);
         gifReader.decodeAndBlitFrameRGBA(i, pixelBuffer);
         let imageData = new window.ImageData(pixelBuffer, width, height)
         ctx.putImageData(imageData, 0, 0);

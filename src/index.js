@@ -12,7 +12,7 @@ ReactDOM.render(<div id="root">
     <Navbar />
     <Section />
     <Footer />
-</div>, document.body);
+</div>, document.querySelector('#root'));
 
 __main();
 registerServiceWorker();
