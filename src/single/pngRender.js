@@ -55,9 +55,11 @@ var loadImg = (sourceImg, url) => {
     }
 }
 
-var __main = () => {
+var __main = async () => {
     var sourceImg = new Image(),
-        url = Vendors + '/img/example.png',
+        tmp = await fetch(Vendors + '/img/example.png'),
+        imgSrcBlob = new Blob([new Uint8Array(await tmp.arrayBuffer())]),
+        url = window.URL.createObjectURL(imgSrcBlob),
         cnt = document.querySelector('#cntVengeful');
     if (cnt) {
         loadImg(sourceImg, url);
