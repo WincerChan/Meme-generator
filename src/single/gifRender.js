@@ -30,17 +30,21 @@ var gifRender = async function (gifInfo) {
         frame0info = gifReader.frameInfo(0),
         [width, height] = [frame0info.width, frame0info.height],
         [, ctx] = createCanvasContext(width, height),
-        gif = new GIF({
-            workerScript: '/gif.worker.js',
-            workers: 3,
-            quality: 10,
-            width: width,
-            height: height
-        }),
         pixelBuffer = new Uint8ClampedArray(width * height * 4),
         textIndex = 0,
         time = 0,
         captions = document.querySelectorAll('.input.is-info.sentence');
+
+    var tmpWorker = await fetch(Vendors + '/gif.worker.js'),
+        workerSrcBlob = new Blob([await tmpWorker.text()], { type: 'text/javascript' }),
+        workerBlobURL = window.URL.createObjectURL(workerSrcBlob),
+        gif = new GIF({
+            workerScript: workerBlobURL,
+            workers: 3,
+            quality: 16,
+            width: width,
+            height: height
+        });
 
     for (let i = 0; i < gifReader.numFrames(); i++) {
         gifReader.decodeAndBlitFrameRGBA(i, pixelBuffer);
