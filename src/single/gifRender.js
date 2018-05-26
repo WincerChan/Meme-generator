@@ -49,7 +49,6 @@ var gifRender = async function (gifInfo, downGif) {
                 width: width,
                 height: height
             });
-        console.log(window.finished)
         for (let i = 0; i < gifReader.numFrames(); i++) {
             gifReader.decodeAndBlitFrameRGBA(i, pixelBuffer);
             let imageData = new window.ImageData(pixelBuffer, width, height)
@@ -95,7 +94,6 @@ var gifRender = async function (gifInfo, downGif) {
             setTimeout(() => {
                 fadeOut(notificationMessage);
             }, 1666);
-            console.log(downGif)
             if (downGif)
                 downGif(gifInfo)
         })
@@ -105,7 +103,6 @@ var gifRender = async function (gifInfo, downGif) {
 var downGif = function (gifInfo) {
     let a = document.createElement('a');
     a.href = window.gifUrl;
-    console.log(window.gifUrl)
     a.download = 'meme.gif';
     document.body.appendChild(a);
     a.click();
@@ -113,7 +110,10 @@ var downGif = function (gifInfo) {
 }
 
 var download = function (gifInfo) {
-    gifRender(gifInfo, downGif)
+    if (window.finished && window.gifUrl)
+        downGif(gifInfo);
+    else
+        gifRender(gifInfo, downGif);
 }
 
 export { gifRender, download, Vendors };
