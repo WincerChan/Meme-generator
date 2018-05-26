@@ -23,7 +23,6 @@ templates.forEach((element, i) => {
             <div id="contentWjz">
                 <img src={Vendors + element.gif} id="gifMeme" alt="meme" />
             </div>
-            <progress className="progress is-success" id="progress" value="0" max="100">233</progress>
             <div id="success-notification" className="notification is-success">
                 <button className="delete" onClick={() => document.querySelector('#success-notification').style.display = 'none'}></button>
                 生成完毕。
@@ -43,6 +42,7 @@ templates.forEach((element, i) => {
             </div>
             <br />
             <br />
+            <progress className="progress is-success" id="progress" value="0" max="100">233</progress>
             <br />
             <article className="message is-warning content">
                 <div className="message-body">

@@ -1,5 +1,6 @@
 import omggif from 'omggif';
 import GIF from 'gif.js';
+import { fadeIn, fadeOut } from './anime';
 
 const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.1/public'
 
@@ -85,6 +86,10 @@ var gifRender = async function (gifInfo) {
         progressBar.style.display = 'none';
         progressBar.value = 0;
         document.querySelector('#success-notification').style.display = 'block';
+        fadeIn(notificationMessage);
+        setTimeout(() => {
+            fadeOut(notificationMessage);
+        }, 1666);
     })
 }
 

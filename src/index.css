@@ -60,3 +60,30 @@
 .is-link {
   border-color:#2196f3!important;
 }
+#success-notification{
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0px;
+  z-index: 1;
+  margin-bottom: 0px;
+  line-height: 1.8rem;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+@media screen and (min-width: 1088px){
+  #success-notification{
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 22px;
+    padding: 18px 24px;
+    z-index: 1;
+    min-width: 16rem;
+    max-width: 24rem;
+    width: 18rem;
+    margin-bottom: 0px;
+    margin: 2rem;
+  }
+}
