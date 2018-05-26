@@ -63,8 +63,8 @@ class Section extends Component {
             <Router>
                 <div>
                     <Route exact path="/" component={Vengeful} />
-                    {templates.map(item =>
-                        <Route path={item.url} component={item.component} />
+                    {templates.map((item, i) =>
+                        <Route key={i} path={item.url} component={item.component} />
                     )}
                 </div>
 

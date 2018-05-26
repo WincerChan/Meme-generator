@@ -53,16 +53,16 @@ class Navbar extends Component {
                 </div>
                 <div id="navbarExampleTransparentExample" className="navbar-menu">
                     <div className="navbar-start">
-                        {navbarItems.map(item =>
-                            <a className="navbar-item" href={item.link}>{item.name}</a>
+                        {navbarItems.map((item, i) =>
+                            <a key={i} className="navbar-item" href={item.link}>{item.name}</a>
                         )}
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-link" href="/">
                                 {menuName}
                             </a>
                             <div className="navbar-dropdown is-boxed">
-                                {templates.map(item =>
-                                    <a className="navbar-item" href={item.url}>{item.name}</a>
+                                {templates.map((item, i) =>
+                                    <a key={i} className="navbar-item" href={item.url}>{item.name}</a>
                                 )}
                             </div>
                         </div>
