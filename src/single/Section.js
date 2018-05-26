@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Vengeful } from './static/Venge';
 import { Wangjingze } from './static/Wangjingze';
 import { Weisuoyuwei } from './static/Weisuoyuwei';
+import { Dagong } from './static/Dagong';
+import { Lianliankan } from './static/Lianliankan';
 
 import { gifRender, download } from './gifRender';
 
 
-var templates = [Wangjingze, Weisuoyuwei];
+const templates = [Wangjingze, Weisuoyuwei, Lianliankan, Dagong];
 
 templates.forEach((element, i) => {
     templates[i].component = () => (
@@ -65,3 +67,4 @@ class Section extends Component {
 }
 
 export default Section;
+export { templates }

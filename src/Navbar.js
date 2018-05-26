@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { templates } from './single/Section'
 
 var Title = 'Meme';
 var navbarItems = [
@@ -8,16 +9,6 @@ var navbarItems = [
     }
 ];
 var menuName = '选择其它梗';
-var templateList = [
-    {
-        'name': '王境泽',
-        'link': '102b1026'
-    },
-    {
-        'name': '为所欲为',
-        'link': 'aa66fceb'
-    }
-]
 var sourceInfo = {
     'name': '源码',
     'link': 'https://github.com/WincerChan/Meme-generator'
@@ -70,8 +61,8 @@ class Navbar extends Component {
                                 {menuName}
                             </a>
                             <div className="navbar-dropdown is-boxed">
-                                {templateList.map(item =>
-                                    <a className="navbar-item" href={item.link}>{item.name}</a>
+                                {templates.map(item =>
+                                    <a className="navbar-item" href={item.url}>{item.name}</a>
                                 )}
                             </div>
                         </div>
