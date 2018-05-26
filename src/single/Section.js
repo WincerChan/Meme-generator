@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Vengeful } from './static/Venge';
 import { Wangjingze } from './static/Wangjingze';
 import { Weisuoyuwei } from './static/Weisuoyuwei';
 
 import { gifRender, download } from './gifRender';
+
 
 var templates = [Wangjingze, Weisuoyuwei];
 
@@ -15,20 +16,24 @@ templates.forEach((element, i) => {
             <p className="subtitle">——{element.name}</p>
             <hr />
             <div id="contentWjz">
-                <img src="https://cdn.yuque.com/yuque/0/2018/gif/114577/1527254341368-assets/web-upload/3c3957c9-501b-4d34-8503-9bd96c7ca90a.gif" id="gifMeme" />
+                <img src={element.gif} id="gifMeme" alt="meme" />
+            </div>
+            <div id="success-notification" className="notification is-success">
+                <button className="delete" onClick={() => document.querySelector('#success-notification').style.display = 'none'}></button>
+                成功生成
             </div>
             {
                 element.config.map((sentence, index) =>
                     <div className="field">
                         <label className="label">第 {index + 1} 句：</label>
-                        <div class="control">
+                        <div className="control">
                             <input className="input is-info sentence" type="text" placeholder={sentence.default} />
                         </div>
                     </div>)
             }
             <div className="button-width">
-                <button id="preveiw" className="button is-info is-outlined" onClick={gifRender}>戳我预览</button>
-                <button id="download" className="button is-info is-outlined" onClick={download}>戳我下载</button>
+                <button id="preveiw" className="button is-info is-outlined" onClick={() => gifRender(element)}>戳我预览</button>
+                <button id="download" className="button is-info is-outlined" onClick={() => download(element)}>戳我下载</button>
             </div>
             <br />
             <br />

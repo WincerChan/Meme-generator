@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 const imgCaption = [
     '5月21日 天气 大火炉',
     <br />,

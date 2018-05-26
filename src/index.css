@@ -48,4 +48,9 @@
 
 #gifMeme {
   width: 400px;
+  border-radius: 5px;
+  margin-bottom: 0.7rem;
+}
+#success-notification{
+  display: none;
 }

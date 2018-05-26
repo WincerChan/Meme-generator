@@ -1,9 +1,8 @@
 import omggif from 'omggif';
 import GIF from 'gif.js';
 import axios from 'axios';
-import { Wangjingze } from './static/Wangjingze';
 
-var gifRender = async function () {
+var gifRender = async function (gifInfo) {
 
     var createCanvasContext = function (width, height) {
         let canvas = document.createElement('canvas');
@@ -18,7 +17,7 @@ var gifRender = async function () {
         ctx.lineJoin = 'round'
         return [canvas, ctx]
     }
-    var response = await axios.get('/wjz.gif', {
+    var response = await axios.get(gifInfo.gif, {
         responseType: 'arraybuffer',
         onDownloadProgress: event => {
             // console.log([event.total, event.loaded])
@@ -32,7 +31,7 @@ var gifRender = async function () {
         gif = new GIF({
             workerScript: '/gif.worker.js',
             workers: 3,
-            quality: 16,
+            quality: 10,
             width: width,
             height: height
         }),
@@ -40,31 +39,34 @@ var gifRender = async function () {
         textIndex = 0,
         time = 0,
         captions = document.querySelectorAll('.input.is-info.sentence');
+    console.log('nums', gifReader.numFrames())
 
     for (let i = 0; i < gifReader.numFrames(); i++) {
+
         gifReader.decodeAndBlitFrameRGBA(i, pixelBuffer);
         let imageData = new window.ImageData(pixelBuffer, width, height)
         ctx.putImageData(imageData, 0, 0);
 
         let frameInfo = gifReader.frameInfo(i);
-
-        if (textIndex < Wangjingze.config.length) {
-            let textInfo = Wangjingze.config[textIndex]
-            if (textInfo.startTime <= time && time < textInfo.endTime) {
+        if (textIndex < gifInfo.config.length) {
+            var textInfo = gifInfo.config[textIndex];
+            if (textInfo.startTime <= time && time <= textInfo.endTime) {
+                var text = undefined;
+                console.log('cap' + captions);
                 if (captions[textIndex])
-                    var text = captions[textIndex].value || textInfo.default;
+                    text = captions[textIndex].value || textInfo.default;
                 else
-                    var text = textInfo.default;
-                // console.log(text)
+                    text = textInfo.default;
+                console.log(2 + text);
                 ctx.strokeText(text, width / 2, height - 5, width);
-                ctx.fillText(text, width / 2, height - 5, width)
+                ctx.fillText(text, width / 2, height - 5, width);
+                console.log('time' + frameInfo.delay / 100)
             }
             time += frameInfo.delay / 100;
             if (time > textInfo.endTime) {
                 textIndex++;
             }
         }
-
         gif.addFrame(ctx, {
             copy: true,
             delay: frameInfo.delay * 10,
@@ -73,16 +75,16 @@ var gifRender = async function () {
     }
     gif.render()
     gif.on('finished', blob => {
-        alert('finded.')
+        document.querySelector('#success-notification').style.display = 'block';
         var img = document.querySelector('#gifMeme');
         window.gifUrl = window.URL.createObjectURL(blob);
         img.src = window.gifUrl;
     })
 }
 
-var download = function () {
+var download = function (gifInfo) {
     if (!window.gifUrl)
-        gifRender()
+        gifRender(gifInfo)
     let a = document.createElement('a');
     a.href = window.gifUrl;
     console.log(window.gifUrl)
@@ -91,4 +93,5 @@ var download = function () {
     a.click();
     document.body.removeChild(a);
 }
+
 export { gifRender, download };
