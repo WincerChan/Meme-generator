@@ -41,7 +41,7 @@ var gifRender = async function (gifInfo) {
         gif = new GIF({
             workerScript: workerBlobURL,
             workers: 3,
-            quality: 16,
+            quality: 10,
             width: width,
             height: height
         });
