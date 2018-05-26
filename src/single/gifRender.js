@@ -2,6 +2,8 @@ import omggif from 'omggif';
 import GIF from 'gif.js';
 import axios from 'axios';
 
+const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.1/public'
+
 
 var gifRender = async function (gifInfo) {
     var progressBar = document.querySelector('#progress'),
@@ -22,7 +24,7 @@ var gifRender = async function (gifInfo) {
         ctx.lineJoin = 'round'
         return [canvas, ctx]
     }
-    var response = await axios.get(gifInfo.gif, {
+    var response = await axios.get(Vendors + gifInfo.gif, {
         responseType: 'arraybuffer',
         onDownloadProgress: event => {
         }
@@ -100,4 +102,4 @@ var download = function (gifInfo) {
     document.body.removeChild(a);
 }
 
-export { gifRender, download };
+export { gifRender, download, Vendors };

@@ -6,7 +6,7 @@ import { Weisuoyuwei } from './static/Weisuoyuwei';
 import { Dagong } from './static/Dagong';
 import { Lianliankan } from './static/Lianliankan';
 
-import { gifRender, download } from './gifRender';
+import { gifRender, download, Vendors } from './gifRender';
 
 
 const templates = [Wangjingze, Weisuoyuwei, Lianliankan, Dagong];
@@ -21,7 +21,7 @@ templates.forEach((element, i) => {
             <p className="subtitle">——{element.name}</p>
             <hr />
             <div id="contentWjz">
-                <img src={element.gif} id="gifMeme" alt="meme" />
+                <img src={Vendors + element.gif} id="gifMeme" alt="meme" />
             </div>
             <progress class="progress is-success" id="progress" value="0" max="100">233</progress>
             <div id="success-notification" className="notification is-success">

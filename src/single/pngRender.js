@@ -1,5 +1,6 @@
 import domtoimage from 'dom-to-image';
 import FileSaver from 'file-saver';
+import { Vendors } from './gifRender'
 
 var toPng = (cnt) => {
     domtoimage.toPng(cnt)
@@ -56,7 +57,7 @@ var loadImg = (sourceImg, url) => {
 
 var __main = () => {
     var sourceImg = new Image(),
-        url = 'img/example.png',
+        url = Vendors + '/img/example.png',
         cnt = document.querySelector('#cntVengeful');
     if (cnt) {
         loadImg(sourceImg, url);
