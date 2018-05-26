@@ -55,7 +55,8 @@
   display: none;
 }
 #progress{
-  display: none;
+  opacity: 0;
+  margin: 1.5rem 0 1.5rem 0;
 }
 .is-link {
   border-color:#2196f3!important;

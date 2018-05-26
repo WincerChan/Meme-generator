@@ -40,10 +40,7 @@ templates.forEach((element, i) => {
                 <button id="preveiw" className="button is-link is-outlined" onClick={() => gifRender(element)}>戳我预览</button>
                 <button id="download" className="button is-link is-outlined" onClick={() => download(element)}>戳我下载</button>
             </div>
-            <br />
-            <br />
             <progress className="progress is-success" id="progress" value="0" max="100">233</progress>
-            <br />
             <article className="message is-warning content">
                 <div className="message-body">
                     <p>Tips:</p>

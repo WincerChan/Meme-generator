@@ -8,7 +8,7 @@ const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.1/publi
 var gifRender = async function (gifInfo) {
     var progressBar = document.querySelector('#progress'),
         notificationMessage = document.querySelector('#success-notification');
-    progressBar.style.display = 'block';
+    progressBar.style.opacity = 1;
     notificationMessage.style.display = 'none';
 
     var createCanvasContext = function (width, height) {
@@ -83,7 +83,7 @@ var gifRender = async function (gifInfo) {
         var img = document.querySelector('#gifMeme');
         window.gifUrl = window.URL.createObjectURL(blob);
         img.src = window.gifUrl;
-        progressBar.style.display = 'none';
+        progressBar.style.opacity = 0;
         progressBar.value = 0;
         document.querySelector('#success-notification').style.display = 'block';
         fadeIn(notificationMessage);
