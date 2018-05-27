@@ -5,7 +5,7 @@ var Title = 'Meme';
 var navbarItems = [
     {
         'name': '教程',
-        'link': '/'
+        'link': 'https://github.com/WincerChan/Meme-generator/wiki'
     }
 ];
 var menuName = '选择其它梗';
@@ -54,7 +54,7 @@ class Navbar extends Component {
                 <div id="navbarExampleTransparentExample" className="navbar-menu">
                     <div className="navbar-start">
                         {navbarItems.map((item, i) =>
-                            <a key={i} className="navbar-item" href={item.link}>{item.name}</a>
+                            <a key={i} rel="noopener noreferrer" target="_blank" className="navbar-item" href={item.link}>{item.name}</a>
                         )}
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-link" href="/">
