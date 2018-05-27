@@ -1,8 +1,8 @@
-var Wangjingze = {
-    'name': '王境泽',
-    'url': '/102b1026',
-    'gif': '/template/wjz.gif',
-    'config': [
+{
+    "name": "王境泽",
+    "url": "/102b1026",
+    "gif": "/template/wangjingze.gif",
+    "config": [
         {
             "default": "我王境泽就是饿死",
             "startTime": 0,
@@ -25,6 +25,3 @@ var Wangjingze = {
         }
     ]
 }
-
-
-export { Wangjingze }

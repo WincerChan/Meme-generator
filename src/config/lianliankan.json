@@ -1,8 +1,8 @@
-var Lianliankan = {
-    'name': '星际还是魔兽',
-    'url': '/50ccf9b9',
-    'gif': '/template/llk.gif',
-    'config': [
+{
+    "name": "星际还是魔兽",
+    "url": "/50ccf9b9",
+    "gif": "/template/lianliankan.gif",
+    "config": [
         {
             "default": "你平时打电子游戏吗",
             "startTime": 0.38,
@@ -25,5 +25,3 @@ var Lianliankan = {
         }
     ]
 }
-
-export { Lianliankan }

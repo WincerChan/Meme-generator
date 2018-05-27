@@ -1,8 +1,8 @@
-var Dagong = {
-    'name': '打工是不可能打工的',
-    'url': '/38655051',
-    'gif': '/template/dg.gif',
-    'config': [
+{
+    "name": "打工是不可能打工的",
+    "url": "/38655051",
+    "gif": "/template/dagong.gif",
+    "config": [
         {
             "default": "没有钱啊，肯定要做的啊",
             "startTime": 0,
@@ -35,5 +35,3 @@ var Dagong = {
         }
     ]
 }
-
-export { Dagong }

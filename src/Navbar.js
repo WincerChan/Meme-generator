@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { templates } from './single/Section'
+import { templates } from './Section'
 
 var Title = 'Meme';
 var navbarItems = [

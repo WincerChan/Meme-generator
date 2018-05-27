@@ -1,8 +1,8 @@
-var Weisuoyuwei = {
-    'name': '为所欲为',
-    'url': '/aa66fceb',
-    'gif': '/template/wsyw.gif',
-    'config': [
+{
+    "name": "为所欲为",
+    "url": "/aa66fceb",
+    "gif": "/template/weisuoyuwei.gif",
+    "config": [
         {
             "default": "好啊",
             "startTime": 1.28,
@@ -50,6 +50,3 @@ var Weisuoyuwei = {
         }
     ]
 }
-
-
-export { Weisuoyuwei }

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Vengeful } from './static/Venge';
-import { Wangjingze } from './static/Wangjingze';
-import { Weisuoyuwei } from './static/Weisuoyuwei';
-import { Dagong } from './static/Dagong';
-import { Lianliankan } from './static/Lianliankan';
+import { Vengeful } from './single/Venge';
+import { gifRender, download, Vendors } from './single/gifRender';
 
-import { gifRender, download, Vendors } from './gifRender';
+const templates = [
+    require('./config/dagong.json'),
+    require('./config/lianliankan.json'),
+    require('./config/wangjingze.json'),
+    require('./config/weisuoyuwei.json'),
+]
 
-
-const templates = [Wangjingze, Weisuoyuwei, Lianliankan, Dagong];
 const messages = [
     <p>服务器在国外，加载图片在晚上高峰期可能会很慢；</p>,
     <p>由于下载采用了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" rel="noopener noreferrer" target="_blank">Blob</a> 协议，故仅新版 Chrome、Firefox 支持下载，其它浏览器请点击预览后右击保存。</p>
