@@ -1,6 +1,5 @@
 var Lianliankan = {
     'name': '星际还是魔兽',
-    'component': undefined,
     'url': '/50ccf9b9',
     'gif': '/template/llk.gif',
     'config': [

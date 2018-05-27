@@ -1,6 +1,5 @@
 var Dagong = {
     'name': '打工是不可能打工的',
-    'component': undefined,
     'url': '/38655051',
     'gif': '/template/dg.gif',
     'config': [

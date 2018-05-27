@@ -9,9 +9,9 @@ class Footer extends Component {
                     <div className="content has-text-centered">
                         <p>
                             <strong>Meme </strong> by&nbsp;
-                            <a target="__blank" href="https://www.itswincer.com">Wincer</a>. The source code is licensed &nbsp;
-                            <a target="__blank" href="https://www.gnu.org/licenses/gpl-3.0.html">GPL 3.0</a>. The website content is licensed &nbsp;
-                            <a target="__blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.itswincer.com">Wincer</a>. The source code is licensed &nbsp;
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.gnu.org/licenses/gpl-3.0.html">GPL 3.0</a>. The website content is licensed &nbsp;
+                            <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
                         </p>
                     </div>
                 </div>

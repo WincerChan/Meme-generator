@@ -42,7 +42,7 @@ class Navbar extends Component {
         return (
             <nav className="navbar is-spaced has-shadow is-white" aria-label="dropdown navigation">
                 <div className="navbar-brand">
-                    <a className="navbar-item" href="https://www.itswincer.com">
+                    <a className="navbar-item" href="https://meme.itswincer.com">
                         {Title}
                     </a>
                     <div className="navbar-burger burger" data-target="navbarExampleTransparentExample">
@@ -71,7 +71,7 @@ class Navbar extends Component {
                         <div className="navbar-item">
                             <div className="field is-grouped">
                                 <p className="control">
-                                    <a className="button is-link" target="__blank" href={sourceInfo.link}>
+                                    <a className="button is-link" rel="noopener noreferrer" target="_blank" href={sourceInfo.link}>
                                         <span>{sourceInfo.name}</span>
                                     </a>
                                 </p>

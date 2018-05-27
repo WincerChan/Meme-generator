@@ -1,6 +1,5 @@
 var Weisuoyuwei = {
     'name': '为所欲为',
-    'component': undefined,
     'url': '/aa66fceb',
     'gif': '/template/wsyw.gif',
     'config': [

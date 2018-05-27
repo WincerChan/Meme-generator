@@ -1,6 +1,5 @@
 var Wangjingze = {
     'name': '王境泽',
-    'component': undefined,
     'url': '/102b1026',
     'gif': '/template/wjz.gif',
     'config': [
