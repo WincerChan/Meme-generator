@@ -115,4 +115,4 @@ var download = function (gifInfo) {
         gifRender(gifInfo, downGif);
 }
 
-export { gifRender, download, Vendors };
+export { gifRender, download };
