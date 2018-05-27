@@ -1,9 +1,7 @@
 import omggif from 'omggif';
 import GIF from 'gif.js';
 import { fadeIn, fadeOut } from './anime';
-
-// const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.1/public'
-const Vendors = ''
+import { Vendors } from '../Section';
 
 window.finished = true;
 

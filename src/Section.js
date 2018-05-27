@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Vengeful } from './single/Venge';
-import { gifRender, download, Vendors } from './single/gifRender';
+import { gifRender, download } from './single/gifRender';
 
 const templates = [
     require('./config/dagong.json'),
@@ -9,6 +9,8 @@ const templates = [
     require('./config/wangjingze.json'),
     require('./config/weisuoyuwei.json'),
 ]
+
+const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.2/public';
 
 const messages = [
     <p>服务器在国外，加载图片在晚上高峰期可能会很慢；</p>,
@@ -71,4 +73,4 @@ class Section extends Component {
 }
 
 export default Section;
-export { templates }
+export { templates, Vendors }

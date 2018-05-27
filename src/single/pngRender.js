@@ -1,6 +1,6 @@
 import domtoimage from 'dom-to-image';
 import FileSaver from 'file-saver';
-import { Vendors } from './gifRender'
+import { Vendors } from '../Section';
 
 var toPng = (cnt) => {
     domtoimage.toPng(cnt)
