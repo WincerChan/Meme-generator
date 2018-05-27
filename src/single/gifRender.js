@@ -45,7 +45,7 @@ var gifRender = async function (gifInfo, downGif) {
             gif = new GIF({
                 workerScript: workerBlobURL,
                 workers: 3,
-                quality: 10,
+                quality: 16,
                 width: width,
                 height: height
             });
@@ -73,8 +73,8 @@ var gifRender = async function (gifInfo, downGif) {
             }
             gif.addFrame(ctx, {
                 copy: true,
-                delay: frameInfo.delay * 10,
-                dispose: frameInfo.dispose
+                delay: frameInfo.delay,
+                dispose: -1
             })
         }
         gif.render()
