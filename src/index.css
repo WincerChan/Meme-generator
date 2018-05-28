@@ -46,6 +46,10 @@
   margin: .3rem;
 }
 
+#fileUpload {
+  display: none;
+}
+
 #gifMeme {
   width: 400px;
   border-radius: 5px;

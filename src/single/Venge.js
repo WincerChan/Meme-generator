@@ -29,6 +29,7 @@ const Vengeful = () => (
         <br />
         <br />
         <br />
+        <input type='file' id="fileUpload"/>
         <article className="message is-warning content">
             <div className="message-body">
                 <p>Tips:</p>
