@@ -62,6 +62,9 @@
   opacity: 0;
   margin: 1.5rem 0 1.5rem 0;
 }
+#myCanvas{
+  cursor: pointer;
+}
 .is-link {
   border-color:#2196f3!important;
 }
