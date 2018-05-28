@@ -4,8 +4,12 @@ import { templates } from './Section'
 var Title = 'Meme';
 var navbarItems = [
     {
-        'name': '教程',
+        'name': '文档',
         'link': 'https://github.com/WincerChan/Meme-generator/wiki'
+    },
+    {
+        'name': '关于',
+        'link': 'https://blog.itswincer.com/posts/8575e868/'
     }
 ];
 var menuName = '选择其它梗';
