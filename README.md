@@ -7,7 +7,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 本项目为表情包生成器，部分模板来自 [sorry](https://github.com/xtyxtyx/sorry)，CSS 框架采用了 [bulma](https://github.com/jgthms/bulma)。
 
-你可以自己构建，也可以直接使用[我提供的服务](https://meme.itswincer.com)，以下是构建步骤。
+你可以自己构建，也可以直接使用[我提供的服务](https://meme.itswincer.com)，关于原理可以参见我[这篇博文](https://blog.itswincer.com/posts/8575e868/)，以下是构建步骤。
 
 ## 使用
 
@@ -47,7 +47,7 @@ yarn build
 
 目前动图有 4 个模板，分别是：王境泽、为所欲为、星际还是魔兽、打工是不可能打工的。
 
-关于添加模板见 Wiki 的[模板部分](https://github.com/WincerChan/Meme-generator/wiki/模板)
+关于添加模板见 Wiki 的[模板部分](https://github.com/WincerChan/Meme-generator/wiki/模板)。
 
 ## 部署
 
