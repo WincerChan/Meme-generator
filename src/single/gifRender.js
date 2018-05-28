@@ -72,7 +72,7 @@ var gifRender = async function (gifInfo, downGif) {
             }
             gif.addFrame(ctx, {
                 copy: true,
-                delay: frameInfo.delay,
+                delay: frameInfo.delay * 10,
                 dispose: -1
             })
         }
