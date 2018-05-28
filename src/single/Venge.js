@@ -7,7 +7,7 @@ const imgCaption = [
 
 const messages = [
     <p>点击文字可直接编辑；</p>,
-    <p>由于下载采用了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" rel="noopener noreferrer" target="_blank">Blob</a> 协议，故仅新版 Chrome、Firefox 支持下载，其它浏览器请点击预览后右击保存。</p>
+    <p>由于下载采用了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" rel="noopener noreferrer" target="_blank">Blob</a> 协议，故仅新版 Chrome、Firefox、Opera、Edge 支持下载，其它浏览器请点击预览后右击保存。</p>
 ]
 
 const Vengeful = () => (
