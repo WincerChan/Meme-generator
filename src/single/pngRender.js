@@ -72,8 +72,6 @@ var readImg = () => {
     var fileUpload = document.querySelector('#fileUpload');
     var canvas = document.querySelector('#myCanvas');
     var ctx = canvas.getContext('2d');
-    // fileUpload.onchange = readImage;
-    // canvas.onclick = readImage;
     canvas.addEventListener('click', () => {
         var readImage = function () {
             if (this.files && this.files[0]) {
@@ -93,23 +91,6 @@ var readImg = () => {
         fileUpload.click();
         fileUpload.onchange = readImage;
     })
-    // canvas.addEventListener('click', (event) => {
-    //     var readImage = function () {
-    //         if (this.files && this.files[0]) {
-    //             var FR = new FileReader();
-    //             FR.onload = function (e) {
-    //                 var img = new Image();
-    //                 img.src = e.target.result;
-    //                 img.onload = function () {
-    //                     ctx.drawImage(img, 0, 0, 300, 300);
-    //                 }
-    //             };
-    //             FR.readAsDataURL(this.files[0]);
-    //         }
-    //     }
-    //     fileUpload.click();
-    //     fileUpload.onchange = readImage;
-    // }
 }
 
 export { __main };
