@@ -71,7 +71,6 @@ templates.forEach((element, i) => {
 
 
 class Section extends Component {
-
     render() {
         return (
             <Router>
