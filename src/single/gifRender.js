@@ -1,118 +1,164 @@
 import omggif from 'omggif';
+import React, { Component } from 'react';
 import GIF from 'gif.js';
 import { fadeIn, fadeOut } from './anime';
 import { Vendors } from '../Section';
 
-window.finished = true;
+class GifRender extends Component {
+    constructor(props) {
+        super(props);
+        this.finished = true;
+        this.gifInfo = this.props.gifInfo;
+        this.download = this.props.download;
+        this.text = this.props.text;
 
-var gifRender = async function (gifInfo, downGif) {
-    if (window.finished) {
-        window.finished = false
-        var progressBar = document.querySelector('#progress'),
-            notificationMessage = document.querySelector('#success-notification');
-        progressBar.style.opacity = 1;
-        notificationMessage.style.display = 'none';
+        this.generating = this.generating.bind(this);
+        this.createCanvasContext = this.createCanvasContext.bind(this);
+        this.displayBar = this.displayBar.bind(this);
+        this.createWorkers = this.createWorkers.bind(this);
+        this.createGif = this.createGif.bind(this);
+        this.drawCaptions = this.drawCaptions.bind(this);
+        this.downGif = this.downGif.bind(this);
+        this.renderGif = this.renderGif.bind(this);
+    }
+    componentDidMount() {
+        this.progressBar = document.querySelector('#progress');
+        this.notificationMessage = document.querySelector('#success-notification');
+    }
 
-        var createCanvasContext = function (width, height) {
-            let canvas = document.createElement('canvas');
-            [canvas.width, canvas.height] = [width, height]
-            let ctx = canvas.getContext('2d');
-            ctx.font = "16px 'Microsoft YaHei', sans-serif"
-            ctx.textAlign = 'center'
-            ctx.textBaseline = 'bottom'
-            ctx.fillStyle = 'white'
-            ctx.strokeStyle = 'black'
-            ctx.lineWidth = 3
-            ctx.lineJoin = 'round'
-            return [canvas, ctx]
-        }
-        var tmp = await fetch(Vendors + gifInfo.gif),
+    displayBar() {
+        this.progressBar.style.opacity = 1;
+        this.notificationMessage.style.display = 'none';
+    }
+
+    hideBar() {
+        this.progressBar.style.opacity = 0;
+        this.progressBar.value = 0;
+        this.notificationMessage.style.display = 'block';
+        fadeIn(this.notificationMessage);
+        setTimeout(() => {
+            fadeOut(this.notificationMessage);
+        }, 1666);
+    }
+
+    async createWorkers(info) {
+        var tmpWorker = await fetch(Vendors + '/gif.worker.js');
+        var workerSrcBlob = new Blob([await tmpWorker.text()], { type: 'text/javascript' }),
+            workerBlobURL = window.URL.createObjectURL(workerSrcBlob);
+        this.gif = new GIF({
+            workerScript: workerBlobURL,
+            workers: 3,
+            quality: 16,
+            width: info.width,
+            height: info.height,
+        });
+    }
+
+    createCanvasContext(width, height) {
+        let canvas = document.createElement('canvas');
+        [canvas.width, canvas.height] = [width, height]
+        let ctx = canvas.getContext('2d');
+        ctx.font = "16px 'Microsoft YaHei', sans-serif";
+        [ctx.textAlign, ctx.textBaseline] = ['center', 'bottom'];
+        [ctx.fillStyle, ctx.strokeStyle] = ['white', 'black'];
+        [ctx.lineWidth, ctx.lineJoin] = [3, 'round'];
+        return [canvas, ctx];
+    }
+
+    async createGif() {
+        this.finished = false
+        var tmp = await fetch(Vendors + this.gifInfo.gif),
             response = await tmp.arrayBuffer(),
             arrayBufferView = new Uint8Array(response),
             gifReader = new omggif.GifReader(arrayBufferView),
-            frame0info = gifReader.frameInfo(0),
-            [width, height] = [frame0info.width, frame0info.height],
-            [, ctx] = createCanvasContext(width, height),
-            pixelBuffer = new Uint8ClampedArray(width * height * 4),
-            textIndex = 0,
-            time = 0,
-            captions = document.querySelectorAll('.input.is-info.sentence');
+            frameZeroInfo = gifReader.frameInfo(0),
+            [, ctx] = this.createCanvasContext(frameZeroInfo.width, frameZeroInfo.height);
 
-        let tmpWorker = await fetch(Vendors + '/gif.worker.js'),
-            workerSrcBlob = new Blob([await tmpWorker.text()], { type: 'text/javascript' }),
-            workerBlobURL = window.URL.createObjectURL(workerSrcBlob),
-            gif = new GIF({
-                workerScript: workerBlobURL,
-                workers: 3,
-                quality: 16,
-                width: width,
-                height: height
-            });
-        for (let i = 0; i < gifReader.numFrames(); i++) {
-            gifReader.decodeAndBlitFrameRGBA(i, pixelBuffer);
-            let imageData = new window.ImageData(pixelBuffer, width, height)
-            ctx.putImageData(imageData, 0, 0);
+        return {
+            index: 0,
+            time: 0,
+            ctx: ctx,
+            gifReader: gifReader,
+            width: frameZeroInfo.width,
+            height: frameZeroInfo.height,
+            captions: document.querySelectorAll('.input.is-info.sentence'),
+            pixelBuffer: new Uint8ClampedArray(frameZeroInfo.width * frameZeroInfo.height * 4),
+        }
+    }
+    
+    drawCaptions(info, frameInfo) {
+        var textInfo = this.gifInfo.config[info.index];
+        if (textInfo.startTime <= info.time && info.time <= textInfo.endTime) {
+            var text = undefined;
+            if (info.captions[info.index])
+                text = info.captions[info.index].value || textInfo.default;
+            else
+                text = textInfo.default;
+            info.ctx.strokeText(text, info.width / 2, info.height - 5, info.width);
+            info.ctx.fillText(text, info.width / 2, info.height - 5, info.width);
+        }
+        info.time += frameInfo.delay / 100;
+        if (info.time > textInfo.endTime) {
+            info.index++;
+        }
+    }
+    renderGif() {
+        this.gif.render();
+        this.gif.on('progress', progress => {
+            this.progressBar.value = 100 * progress;
+            this.finished = false;
+        })
+        this.gif.on('finished', blob => {
+            this.finished = true;
+            var img = document.querySelector('#gifMeme');
+            window.gifUrl = window.URL.createObjectURL(blob);
+            img.src = window.gifUrl;
+            this.hideBar()
+            if (this.download)
+                this.downGif()
+        })
+    }
+    downGif() {
+        let a = document.createElement('a');
+        a.href = window.gifUrl;
+        a.download = 'meme.gif';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+    drawFrame(info) {
+        for (let i = 0; i < info.gifReader.numFrames(); i++) {
+            info.gifReader.decodeAndBlitFrameRGBA(i, info.pixelBuffer);
+            let imageData = new window.ImageData(info.pixelBuffer, info.width, info.height);
+            info.ctx.putImageData(imageData, 0, 0);
 
-            let frameInfo = gifReader.frameInfo(i);
-            if (textIndex < gifInfo.config.length) {
-                var textInfo = gifInfo.config[textIndex];
-                if (textInfo.startTime <= time && time <= textInfo.endTime) {
-                    var text = undefined;
-                    if (captions[textIndex])
-                        text = captions[textIndex].value || textInfo.default;
-                    else
-                        text = textInfo.default;
-                    ctx.strokeText(text, width / 2, height - 5, width);
-                    ctx.fillText(text, width / 2, height - 5, width);
-                }
-                time += frameInfo.delay / 100;
-                if (time > textInfo.endTime) {
-                    textIndex++;
-                }
+            let frameInfo = info.gifReader.frameInfo(i);
+            if (info.index < this.gifInfo.config.length) {
+                this.drawCaptions(info, frameInfo)
             }
-            gif.addFrame(ctx, {
+            this.gif.addFrame(info.ctx, {
                 copy: true,
                 delay: frameInfo.delay * 10,
                 dispose: -1
             })
         }
-        gif.render()
-        gif.on('progress', progress => {
-            progressBar.value = 100 * progress;
-            window.finished = false;
-        })
-        gif.on('finished', blob => {
-            window.finished = true;
-            var img = document.querySelector('#gifMeme');
-            window.gifUrl = window.URL.createObjectURL(blob);
-            img.src = window.gifUrl;
-            progressBar.style.opacity = 0;
-            progressBar.value = 0;
-            document.querySelector('#success-notification').style.display = 'block';
-            fadeIn(notificationMessage);
-            setTimeout(() => {
-                fadeOut(notificationMessage);
-            }, 1666);
-            if (downGif)
-                downGif(gifInfo)
-        })
+    }
+    async generating() {
+        console.log(this.finished)
+        if (!this.finished) {
+            return null;
+        }
+        this.displayBar();
+        var info = await this.createGif();
+        await this.createWorkers(info);
+        this.drawFrame(info);
+        this.renderGif()
+    }
+
+    render() {
+        return (
+            <button id={this.props.id} className="button is-link is-outlined" onClick={this.generating}>{this.text}</button>
+        )
     }
 }
-
-var downGif = function (gifInfo) {
-    let a = document.createElement('a');
-    a.href = window.gifUrl;
-    a.download = 'meme.gif';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
-
-var download = function (gifInfo) {
-    if (window.finished && window.gifUrl)
-        downGif(gifInfo);
-    else
-        gifRender(gifInfo, downGif);
-}
-
-export { gifRender, download };
+export { GifRender };

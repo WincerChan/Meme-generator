@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Vengeful } from './single/Venge';
-import { gifRender, download } from './single/gifRender';
+import { GifRender } from './single/gifRender';
 
 const templates = [
     require('./config/wangjingze.json'),
@@ -18,9 +18,6 @@ const messages = [
 ]
 
 class Title extends Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         document.title = 'Meme · ' + this.props.title;
     }
@@ -53,8 +50,8 @@ templates.forEach((element, i) => {
                     </div>)
             }
             <div className="button-width">
-                <button id="preveiw" className="button is-link is-outlined" onClick={() => gifRender(element)}>戳我预览</button>
-                <button id="download" className="button is-link is-outlined" onClick={() => download(element)}>戳我下载</button>
+                <GifRender id="preview" gifInfo={element} download={false} text="戳我预览" />
+                <GifRender id="download" gifInfo={element} download={true} text="戳我下载" />
             </div>
             <progress className="progress is-success" id="progress" value="0" max="100">233</progress>
             <article className="message is-warning content">
