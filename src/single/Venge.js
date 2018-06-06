@@ -1,8 +1,8 @@
 import React from 'react';
+
 const imgCaption = [
-    '5月21日 天气 大火炉',
-    <br />,
-    '和富婆走丢了。'
+    <p>{(new Date()).getMonth() + 1 + '月' + (new Date()).getDate() + '日 天气 大火炉'}</p>, 
+    <p>和富婆走丢了。</p>
 ]
 
 const messages = [
