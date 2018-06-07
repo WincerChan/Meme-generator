@@ -45,6 +45,8 @@ yarn build
 
 ## 模板
 
+静态图可以通过点击图片来自定上传。
+
 目前动图有 4 个模板，分别是：王境泽、为所欲为、星际还是魔兽、打工是不可能打工的。
 
 关于添加模板见 Wiki 的[模板部分](https://github.com/WincerChan/Meme-generator/wiki/模板)。
