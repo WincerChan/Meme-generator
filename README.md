@@ -5,6 +5,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 # Meme-generator
 
+[![CircleCI](https://circleci.com/gh/WincerChan/Meme-generator/tree/master.svg?style=svg)](https://circleci.com/gh/WincerChan/Meme-generator/tree/master)
+
 本项目为表情包生成器，部分模板来自 [sorry](https://github.com/xtyxtyx/sorry)，CSS 框架采用了 [bulma](https://github.com/jgthms/bulma)。
 
 你可以自己构建，也可以直接使用[我提供的服务](https://meme.itswincer.com)，关于原理可以参见我[这篇博文](https://blog.itswincer.com/posts/8575e868/)，以下是构建步骤。
