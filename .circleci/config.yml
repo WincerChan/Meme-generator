@@ -1,27 +1,51 @@
+defaults: &defaults
+    docker:
+        - image: circleci/node:10.4.0
+
 version: 2
 jobs:
     build:
-        docker:
-            - image: circleci/node:10.4.0
+        <<: *defaults
         steps:
-            - run:
-                name: Update System
-                command: |
-                    sudo apt-get update && sudo apt-get install rsync
             - checkout
             - run: 
                 name: Install Dependence
                 command: |
-                    yarn install && yarn build
+                    yarn install && yarn build && pwd
+            - save_cache:
+                key: meme-v1-{{ checksum "package.json" }}
+                paths:
+                    - "build"
+
+    deploy:
+        <<: *defaults
+        steps:
+            - checkout
             - run:
-                name: Add KnownHosts
+                name: Update System
                 command: |
-                    { ssh-keyscan $SSH_IP 2> /dev/null; } >> ~/.ssh/known_hosts
+                    sudo apt-get update && sudo apt-get install rsync
+            - restore_cache:
+                keys:
+                    - meme-v1-{{ checksum "package.json" }}
             - deploy:
                 name: Deploy via ssh
                 command: |
+                    mkdir -p ~/.ssh
+                    touch ~/.ssh/known_hosts
+                    { ssh-keyscan $SSH_IP 2> /dev/null; } >> ~/.ssh/known_hosts
                     if [ ${CIRCLE_BRANCH} = "master" ];then
                         rsync -az -v --delete -e ssh build/* $SSH_USER@$SSH_IP:/data/www/meme/
                     else
                         echo "Not master branch"
                     fi
+
+workflows:
+    version: 2
+
+    Meme-CI:
+        jobs:
+            - build
+            - deploy:
+                requires:
+                    - build
