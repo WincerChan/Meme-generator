@@ -4,6 +4,7 @@ jobs:
         docker:
             - image: circleci/node:10.4.0
         steps:
+            - checkout
             - run: yarn install
             - run: yarn build
             - run: ls
