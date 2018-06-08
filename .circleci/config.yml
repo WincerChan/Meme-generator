@@ -1,25 +1,30 @@
 defaults:
-    working_directory: /home/circleci/project
+    working_directory: /tmp
 
 version: 2
 jobs:
     build:
+        <<:
         docker:
             - image: circleci/node:10.4.0
         steps:
+            - run: pwd
             - checkout
             - run: yarn install
             - run: yarn build
+            - run: pwd
+            - run: mkdir -p meme
             - persist_to_workspace:
-                root: Meme-generator
+                root: meme
                 paths:
                     - echo-output
     deploy:
+        <<:
         machine:
             enables: true
         steps:
             - attach_workspace:
-                at: /home/circleci/project/Meme-generator
+                at: /tmp/meme
             - run:
                 name: Deploy Over SSH
                 command: |
