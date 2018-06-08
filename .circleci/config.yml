@@ -7,13 +7,12 @@ jobs:
             - run: yarn install
             - run: yarn build
             - run: ls
-            - run:
             - run: echo "A first hello"
     deploy:
         machine:
             enables: true
         steps:
-            - run: Deploy Over SSH
+            - run:
                 name: Deploy Over SSH
                 command: |
                     rsync -az -vv --delete -e \'ssh -p $SSH_PORT\' build/* $SSH_USER:/data/www/meme/
@@ -22,7 +21,7 @@ workflows:
     version: 2
     build-and-deploy:
         jobs:
-            - buil
+            - build
             - deploy:
                 requires:
                     - build
