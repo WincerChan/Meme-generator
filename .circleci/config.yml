@@ -1,3 +1,6 @@
+defaults:
+    working_directory: /home/circleci/project
+
 version: 2
 jobs:
     build:
@@ -7,12 +10,16 @@ jobs:
             - checkout
             - run: yarn install
             - run: yarn build
-            - run: ls
-            - run: echo "A first hello"
+            - persist_to_workspace:
+                root: Meme-generator
+                paths:
+                    - echo-output
     deploy:
         machine:
             enables: true
         steps:
+            - attach_workspace:
+                at: /home/circleci/project/Meme-generator
             - run:
                 name: Deploy Over SSH
                 command: |
