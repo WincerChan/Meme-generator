@@ -16,7 +16,7 @@ jobs:
             - run:
                 name: Deploy Over SSH
                 command: |
-                    rsync -az -vv --delete -e ssh build/* $SSH_IP@$SSH_USER:/data/www/meme/
+                    rsync -az -vv --delete -e ssh build/* $SSH_USER@$SSH_IP:/data/www/meme/
 
 workflows:
     version: 2
