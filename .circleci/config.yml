@@ -16,7 +16,7 @@ jobs:
             - run:
                 name: Add KnownHosts
                 command: |
-                    { ssh-keyscan $SSH_IP 2> /del/null } >> ~/.ssh/known_hosts
+                    { ssh-keyscan $SSH_IP 2> /del/null; } >> ~/.ssh/known_hosts
             - deploy:
                 name: Deploy via ssh
                 command: |
