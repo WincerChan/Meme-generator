@@ -1,9 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-# Meme-generator
+# Meme generator
 
 [![CircleCI](https://img.shields.io/circleci/project/github/WincerChan/Meme-generator.svg?style=flat-square)](https://circleci.com/gh/WincerChan/Meme-generator/tree/master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
