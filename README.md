@@ -5,7 +5,9 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/WincerChan/Meme-generator.svg?style=flat-square)
 
 
-本项目为表情包生成器，部分模板来自 [sorry](https://github.com/xtyxtyx/sorry)，CSS 框架采用了 [bulma](https://github.com/jgthms/bulma)。
+一个使用纯 JavaScript 编写的表情包生成器。
+
+部分模板来自 [sorry](https://github.com/xtyxtyx/sorry)，CSS 框架采用了 [bulma](https://github.com/jgthms/bulma)。
 
 你可以自己构建，也可以直接使用[我提供的服务](https://meme.itswincer.com)，关于原理可以参见我[这篇博文](https://blog.itswincer.com/posts/8575e868/)，以下是构建步骤。
 
@@ -53,7 +55,7 @@ yarn build
 
 ## 部署
 
-选择生产环境构建完毕后，就只是静态文件了，可借助 Nginx、Apache、Caddy 服务器等托管。
+选择生产环境构建完毕后，生成的静态文件可借助 Nginx、Apache、Caddy 服务器等托管。
 
 ### 远程同步
 
@@ -66,7 +68,7 @@ rsync -az -vv --delete -e 'ssh -p 22' build/* DomainName:/Path
 
 ### 配置文件
 
-注意需要修改一下 Nginx 配置文件，否则是无法访问直接访问二级路由页面的：
+注意：由于各页面的路由是由前端提供的，故需要修改一下配置文件（以 Nginx 为例），否则是无法访问直接访问二级路由页面的：
 
 ```nginx
 server {
