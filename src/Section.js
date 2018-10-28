@@ -8,8 +8,8 @@ const templates = [
     require('./config/wangjingze.json'),
     require('./config/weisuoyuwei.json'),
     require('./config/lianliankan.json'),
-    require('./config/dagong.json'),
-    require('./config/shuifandui.json')
+    require('./config/shuifandui.json'),
+    require('./config/dagong.json')
 ]
 
 const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.3/public';
