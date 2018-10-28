@@ -12,7 +12,7 @@ const templates = [
     require('./config/shuifandui.json')
 ]
 
-const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.2/public';
+const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.3/public';
 
 const messages = [
     <p>服务器在国外，加载图片在晚上高峰期可能会很慢；</p>,

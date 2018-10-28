@@ -1,0 +1,22 @@
+{
+    "name": "谁赞成，谁反对",
+    "url": "/64fe17a0",
+    "gif": "/template/shuifandui.gif",
+    "config": [
+        {
+            "default": "我话说玩了",
+            "startTime": 0.3,
+            "endTime": 1.7
+        },
+        {
+            "default": "谁赞成？谁反对？",
+            "startTime": 2.57,
+            "endTime": 4.7
+        },
+        {
+            "default": "我反对",
+            "startTime": 4.9,
+            "endTime": 5.55
+        }
+    ]
+}
