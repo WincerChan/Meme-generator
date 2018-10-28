@@ -4,10 +4,12 @@ import { Vengeful } from './single/Venge';
 import { GifRender } from './single/gifRender';
 
 const templates = [
+    require('./config/woshuode.json'),
     require('./config/wangjingze.json'),
     require('./config/weisuoyuwei.json'),
     require('./config/lianliankan.json'),
     require('./config/dagong.json'),
+    require('./config/shuifandui.json')
 ]
 
 const Vendors = 'https://cdn.jsdelivr.net/gh/wincerchan/Meme-generator@0.2/public';
