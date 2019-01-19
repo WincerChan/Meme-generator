@@ -1,6 +1,8 @@
-{
+
+import React from 'react'
+import { Template } from '../components/template';
+const config = {
     "name": "我说的",
-    "url": "/31e2a4c1",
     "gif": "/template/woshuode.gif",
     "config": [
         {
@@ -20,3 +22,6 @@
         }
     ]
 }
+export default () => (
+    <Template element={config} />
+)

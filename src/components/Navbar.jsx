@@ -1,22 +1,23 @@
-import React, { Component } from 'react';
-import { templates } from './Section'
+import React, { Component } from "react";
+import { Link } from "gatsby";
+const templates = require('./config.json')
 
-var Title = 'Meme';
-var navbarItems = [
-    {
-        'name': '文档',
-        'link': 'https://github.com/WincerChan/Meme-generator/wiki'
-    },
-    {
-        'name': '关于',
-        'link': 'https://blog.itswincer.com/posts/8575e868/'
-    }
-];
-var menuName = '选择其它梗';
-var sourceInfo = {
-    'name': '源码',
-    'link': 'https://github.com/WincerChan/Meme-generator'
-}
+const Title = "Meme",
+    navbarItems = [
+        {
+            'name': '文档',
+            'link': 'https://github.com/WincerChan/Meme-generator/wiki'
+        },
+        {
+            'name': '关于',
+            'link': 'https://blog.itswincer.com/posts/8575e868/'
+        }
+    ],
+    menuName = '选择其它梗',
+    sourceInfo = {
+        'name': '源码',
+        'link': 'https://github.com/WincerChan/Meme-generator'
+    };
 
 class Navbar extends Component {
     constructor(props) {
@@ -32,7 +33,6 @@ class Navbar extends Component {
             return { navBarIsActive: newState };
         })
     }
-
     render() {
         return (
             <nav className="navbar is-spaced has-shadow is-white" aria-label="dropdown navigation">
@@ -61,7 +61,7 @@ class Navbar extends Component {
                             </a>
                             <div className="navbar-dropdown is-boxed">
                                 {templates.map((item, i) =>
-                                    <a key={i} className="navbar-item" href={item.url}>{item.name}</a>
+                                    <Link key={i} className="navbar-item" to={item.url}>{item.name}</Link>
                                 )}
                             </div>
                         </div>

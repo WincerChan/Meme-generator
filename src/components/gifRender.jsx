@@ -1,37 +1,27 @@
 import omggif from 'omggif';
 import React, { Component } from 'react';
 import GIF from 'gif.js';
-import { fadeIn, fadeOut } from './anime';
-import { Vendors } from '../Section';
+
+import { Vendors } from './Section';
 
 class GifRender extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.finished = true;
         this.gifInfo = this.props.gifInfo;
         this.download = this.props.download;
         this.text = this.props.text;
-
-        this.generating = this.generating.bind(this);
-        this.createCanvasContext = this.createCanvasContext.bind(this);
-        this.displayBar = this.displayBar.bind(this);
-        this.createWorkers = this.createWorkers.bind(this);
-        this.createGif = this.createGif.bind(this);
-        this.drawCaptions = this.drawCaptions.bind(this);
-        this.downGif = this.downGif.bind(this);
-        this.renderGif = this.renderGif.bind(this);
     }
     componentDidMount() {
         this.progressBar = document.querySelector('#progress');
         this.notificationMessage = document.querySelector('#success-notification');
     }
-
-    displayBar() {
+    displayBar = () => {
         this.progressBar.style.opacity = 1;
         this.notificationMessage.style.display = 'none';
     }
 
-    hideBar() {
+    hideBar = () => {
         this.progressBar.style.opacity = 0;
         this.progressBar.value = 0;
         this.notificationMessage.style.display = 'block';
@@ -41,7 +31,7 @@ class GifRender extends Component {
         }, 1666);
     }
 
-    async createWorkers(info) {
+    createWorkers = async (info) => {
         var tmpWorker = await fetch(Vendors + '/gif.worker.js');
         var workerSrcBlob = new Blob([await tmpWorker.text()], { type: 'text/javascript' }),
             workerBlobURL = window.URL.createObjectURL(workerSrcBlob);
@@ -53,8 +43,7 @@ class GifRender extends Component {
             height: info.height,
         });
     }
-
-    createCanvasContext(width, height) {
+    createCanvasContext = (width, height) => {
         let canvas = document.createElement('canvas');
         [canvas.width, canvas.height] = [width, height]
         let ctx = canvas.getContext('2d');
@@ -64,8 +53,7 @@ class GifRender extends Component {
         [ctx.lineWidth, ctx.lineJoin] = [3, 'round'];
         return [canvas, ctx];
     }
-
-    async createGif() {
+    createGif = async () => {
         this.finished = false
         var tmp = await fetch(Vendors + this.gifInfo.gif),
             response = await tmp.arrayBuffer(),
@@ -85,8 +73,7 @@ class GifRender extends Component {
             pixelBuffer: new Uint8ClampedArray(frameZeroInfo.width * frameZeroInfo.height * 4),
         }
     }
-    
-    drawCaptions(info, frameInfo) {
+    drawCaptions = (info, frameInfo) => {
         var textInfo = this.gifInfo.config[info.index];
         if (textInfo.startTime <= info.time && info.time <= textInfo.endTime) {
             var text = undefined;
@@ -102,7 +89,7 @@ class GifRender extends Component {
             info.index++;
         }
     }
-    renderGif() {
+    renderGif = () => {
         this.gif.render();
         this.gif.on('progress', progress => {
             this.progressBar.value = 100 * progress;
@@ -118,7 +105,7 @@ class GifRender extends Component {
                 this.downGif()
         })
     }
-    downGif() {
+    downGif = () => {
         let a = document.createElement('a');
         a.href = window.gifUrl;
         a.download = 'meme.gif';
@@ -126,7 +113,8 @@ class GifRender extends Component {
         a.click();
         document.body.removeChild(a);
     }
-    drawFrame(info) {
+
+    drawFrame = (info) => {
         for (let i = 0; i < info.gifReader.numFrames(); i++) {
             info.gifReader.decodeAndBlitFrameRGBA(i, info.pixelBuffer);
             let imageData = new window.ImageData(info.pixelBuffer, info.width, info.height);
@@ -143,7 +131,7 @@ class GifRender extends Component {
             })
         }
     }
-    async generating() {
+    generating = async () => {
         console.log(this.finished)
         if (!this.finished) {
             return null;
@@ -154,11 +142,11 @@ class GifRender extends Component {
         this.drawFrame(info);
         this.renderGif()
     }
-
     render() {
         return (
             <button id={this.props.id} className="button is-link is-outlined" onClick={this.generating}>{this.text}</button>
         )
     }
 }
-export { GifRender };
+
+export { GifRender }
