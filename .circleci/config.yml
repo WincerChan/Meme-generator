@@ -11,11 +11,11 @@ jobs:
             - run: 
                 name: Install Dependence
                 command: |
-                    yarn install && yarn build && pwd
+                    yarn global add gatsby-cli && yarn install && gatsby && pwd
             - save_cache:
                 key: meme-v1-{{ checksum "package.json" }}
                 paths:
-                    - "build"
+                    - "public"
 
     deploy:
         <<: *defaults
@@ -35,7 +35,7 @@ jobs:
                     touch ~/.ssh/known_hosts
                     { ssh-keyscan $SSH_IP 2> /dev/null; } >> ~/.ssh/known_hosts
                     if [ ${CIRCLE_BRANCH} = "master" ];then
-                        rsync -az -v --delete -e ssh build/* $SSH_USER@$SSH_IP:/data/www/meme/
+                        rsync -az -v --delete -e ssh public/* $SSH_USER@$SSH_IP:/data/www/meme/
                     else
                         echo "Not master branch"
                     fi
