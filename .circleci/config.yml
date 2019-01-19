@@ -11,11 +11,11 @@ jobs:
             - run: 
                 name: Install Dependence
                 command: |
-                    yarn install && yarn build && pwd
+                    npm install -g gatsby-cli && yarn install && gatsby && pwd
             - save_cache:
                 key: meme-v1-{{ checksum "package.json" }}
                 paths:
-                    - "build"
+                    - "public"
 
     deploy:
         <<: *defaults
