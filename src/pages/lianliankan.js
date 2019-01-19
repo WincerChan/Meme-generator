@@ -1,6 +1,7 @@
-{
+import React from 'react'
+import { Template } from '../components/template';
+const config = {
     "name": "星际还是魔兽",
-    "url": "/50ccf9b9",
     "gif": "/template/lianliankan.gif",
     "config": [
         {
@@ -25,3 +26,7 @@
         }
     ]
 }
+
+export default () => (
+    <Template element={config} />
+)
