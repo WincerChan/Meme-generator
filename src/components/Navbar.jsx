@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "gatsby";
-const templates = require('./config.json')
+import 'bulma/css/bulma.css'
+import './layout.css'
+import getConfig from './config'
 
 const Title = "Meme",
     navbarItems = [
@@ -25,6 +27,7 @@ class Navbar extends Component {
         this.state = {
             navBarIsActive: false
         }
+        this.configs = getConfig()
     }
 
     toggleNavbar = () => {
@@ -60,7 +63,7 @@ class Navbar extends Component {
                                 {menuName}
                             </a>
                             <div className="navbar-dropdown is-boxed">
-                                {templates.map((item, i) =>
+                                {this.configs.map((item, i) =>
                                     <Link key={i} className="navbar-item" to={item.url}>{item.name}</Link>
                                 )}
                             </div>

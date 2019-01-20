@@ -1,8 +1,8 @@
-
 import React from 'react'
 import { Template } from '../components/template';
 const config = {
     "name": "打工是不可能打工的",
+    "url": "/dagong/",
     "gif": "/template/dagong.gif",
     "config": [
         {
@@ -37,6 +37,9 @@ const config = {
         }
     ]
 }
+export { config };
+
 export default () => (
     <Template element={config} />
 )
+

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'bulma/css/bulma.css'
 import SEO from './seo';
 import Navbar from './Navbar'
 import GIF from 'gif.js';

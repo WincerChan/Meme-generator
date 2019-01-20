@@ -2,6 +2,7 @@ import React from 'react'
 import { Template } from '../components/template';
 const config = {
     "name": "星际还是魔兽",
+    "url": "/lianliankan/",
     "gif": "/template/lianliankan.gif",
     "config": [
         {
@@ -27,6 +28,8 @@ const config = {
     ]
 }
 
+
+export { config };
 export default () => (
     <Template element={config} />
 )

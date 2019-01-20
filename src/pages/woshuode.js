@@ -3,6 +3,7 @@ import React from 'react'
 import { Template } from '../components/template';
 const config = {
     "name": "我说的",
+    "url": "/woshuode/",
     "gif": "/template/woshuode.gif",
     "config": [
         {
@@ -22,6 +23,8 @@ const config = {
         }
     ]
 }
+
+export { config };
 export default () => (
     <Template element={config} />
 )
