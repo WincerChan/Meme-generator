@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "Meme Generator",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "这里是由 @Wincer 开发的一款在线表情包制作工具，纯 JavaScript 编写，支持动图和用户自定义上传静态图片。",
+  "version": "1.1.0",
+  "author": "Wincer <WincerChan@gmail.com>",
   "dependencies": {
     "bulma": "^0.7.2",
     "dom-to-image": "^2.6.0",
@@ -24,9 +24,9 @@
     "react-helmet": "^5.2.0"
   },
   "keywords": [
-    "gatsby"
+    "Meme"
   ],
-  "license": "MIT",
+  "license": "GPL3",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -39,9 +39,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/WincerChan/Meme-generator"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/WincerChan/Meme-generator/issues"
   }
 }

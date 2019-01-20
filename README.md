@@ -29,6 +29,7 @@ git clone git@github.com:WincerChan/Meme-generator.git
 
 ```bash
 yarn install
+yarn global add gatsby
 ```
 
 ### 运行
@@ -37,10 +38,10 @@ yarn install
 
 ```bash
 # 开发环境
-yarn start
+gatsby develop
 
 # 生产环境
-yarn build
+gatsby build
 ```
 
 其中开发环境用于本地调试、测试，生产环境会将源码打包生成在 build 目录。
@@ -63,18 +64,6 @@ yarn build
 
 ```bash
 # 需要先执行 yarn build 
-rsync -az -vv --delete -e 'ssh -p 22' build/* DomainName:/Path
+rsync -az -vv --delete -e 'ssh -p 22' public/* DomainName:/Path
 ```
 
-### 配置文件
-
-注意：由于各页面的路由是由前端提供的，故需要修改一下配置文件（以 Nginx 为例），否则二级路由页面刷新会报错：
-
-```nginx
-server {
-    ...
-    location / {
-        try_files $uri /index.html;
-    }
-}
-```
